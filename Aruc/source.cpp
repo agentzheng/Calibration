@@ -26,24 +26,28 @@ int main(int argc,char** argv)
 		vector<DMatch> match;
 		for (vector<int>::iterator it1 = markerIds1.begin(); it1 != markerIds1.end(); it1++)
 		{
-			cout << "The ID of marker is" << *it1 << endl;
+			bool is_find = false;
+			cout << "The ID of marker is " << *it1 << endl;
 			for (vector<int>::iterator it2 = markerIds2.begin(); it2 != markerIds2.end(); it2++)
 			{
 				if (*it1 == *it2) 
 				{
-					cout << "Yes we find the match" << endl;
+					cout << "Yes,we find the match";
 					int index1 = distance(markerIds1.begin(), it1);
 					int index2 = distance(markerIds2.begin(), it2);
 					Find_Match(match, keypoint1, keypoint2, index1, markerCorners1, index2, markerCorners2);
-					cout << "generate match success" << endl;
+					cout << "generate match success" <<endl;
+					is_find = true;
 					break;
 				}
 			}
-			cout << "Sorry, We can't find the match ID" << endl;
+			if(!is_find)
+				cout << "Sorry, The marker doesn't find any match" << endl;
+			cout << endl;
 		}
 	Mat img_RR_matches;
 	drawMatches(inputImage1, keypoint1, inputImage2, keypoint2, match, img_RR_matches);
-	imshow("Ïû³ýÎóÆ¥Åäµãºó", img_RR_matches);
+	imshow("Ñ°ÕÒÆ¥Åäµã", img_RR_matches);
 	cvWaitKey(0);
 	return 0;
 }

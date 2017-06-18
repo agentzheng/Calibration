@@ -23,10 +23,9 @@ int main()
 			aruco::drawMarker(dictionary, i * 9 + j + 2, 400, markerImage1, 1);
 			markerImage1.copyTo(Mat(FourMarkers, Rect(1050, 50+500*j, 400, 400)));
 			imshow(to_string(i) + ".jpg", FourMarkers);
+			imshow(to_string(i) + ".png", markerImage1);
 		}
-		Mat result;
-		resize(FourMarkers, result, Size(1000, 1000));
-		imwrite(to_string(i) + ".jpg", result);
+		imwrite(to_string(i) + ".jpg", FourMarkers);
 		cvWaitKey(10);
 	}
 }
